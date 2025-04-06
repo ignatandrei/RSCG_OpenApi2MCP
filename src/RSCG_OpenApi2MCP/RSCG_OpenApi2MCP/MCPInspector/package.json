@@ -1,0 +1,15 @@
+{
+  "name": "mcpinspector",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "OA2MCP_TestMe":"npx @modelcontextprotocol/inspector"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.8.1"
+  }
+}
