@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.OpenApi.Readers;
 using System;
+using System.Threading.Tasks;
 
 namespace RSCG_OpenApi2MCP;
 enum FileJsonEnum
@@ -54,7 +55,7 @@ public class OpenAPI2MCP : IIncrementalGenerator
             var obj = Path.Combine(csproj, "obj");
             if (!Directory.Exists(obj))
                 return new FileJson(FileJsonEnum.NotFoundObj,obj);
-            var fileJson = Path.Combine(csproj, "obj", name, ".json");
+            var fileJson = Path.Combine(csproj, "obj", name+ ".json");
             if (!File.Exists(fileJson))
                 return new FileJson(FileJsonEnum.NotFoundJSON,fileJson);
             return new FileJson(fileJson);
@@ -91,6 +92,8 @@ public class OpenAPI2MCP : IIncrementalGenerator
 
             return;
         }
+        FunctionsToGenerate functions = new(document);
+        context.AddSource("FunctionsToGenerate", functions.TemplateToDisplay());
 
     }
 }

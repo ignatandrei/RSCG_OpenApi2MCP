@@ -18,8 +18,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RSCG_OpenApi2MCP.ServiceDefaults\RSCG_OpenApi2MCP.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\RSCG_OpenApi2MCP\RSCG_OpenApi2MCP.csproj" OutputItemType="Analyzer"  />
   </ItemGroup>
-	
+	<PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GX</CompilerGeneratedFilesOutputPath>
+	</PropertyGroup>
 	<!-- from here -->
 	<ItemGroup>
 		<PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.4" />

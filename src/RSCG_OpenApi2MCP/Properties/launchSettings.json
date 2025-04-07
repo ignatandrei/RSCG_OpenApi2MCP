@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Profile 1": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\OA2MCP_TestMe\\OA2MCP_TestMe.csproj"
+    }
+  }
+}
