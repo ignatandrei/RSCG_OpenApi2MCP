@@ -82,12 +82,12 @@
 		<None Include="../../LICENSE" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	<PropertyGroup>
-		<Description>Measuring Dots ( think Demeter Law)</Description>
+		<Description>Generating MCP tools from swagger at runtime.</Description>
 		<Copyright>MIT</Copyright>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<CurrentDate>$([System.DateTime]::Now.ToString(yyyyMMdd))</CurrentDate>
 		<Authors>Andrei Ignat</Authors>
-		<Title>Measuring Dots ( think Demeter Law )</Title>
+		<Title>Generating MCP tools from swagger</Title>
 		<PackageTags>dotnet;dotnetcore;csharp;generators;sourcegen;roslyn;</PackageTags>
 		<PackageProjectUrl>https://github.com/ignatandrei/RSCG_OpenApi2MCP</PackageProjectUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
