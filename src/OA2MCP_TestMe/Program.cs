@@ -1,5 +1,6 @@
 //using Microsoft.AspNetCore.Authentication.Negotiate;
 using OpenAPISwaggerUI;
+using UsefullExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,7 @@ builder.Services.AddMcpServer().WithToolsFromAssembly();
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
-
+app.MapUsefullAll();
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 {

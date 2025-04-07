@@ -7,7 +7,7 @@ public static class WeatherTool
 {
     [McpServerTool, Description("Returns the current weather for a specific city")]
     public static string MyGetWeatherForCity(string cityName)
-    {
+    { 
         Console.WriteLine("==========================");
         Console.WriteLine($"Function Start WeatherTool: GetWeatherForCity called with cityName: {cityName}");
 
@@ -25,4 +25,21 @@ public static class WeatherTool
 
         return report;
     }
+    //[ModelContextProtocol.Server.McpServerTool, System.ComponentModel.Description("TODO: desc from comments: ")]
+    //public static string MCP_api_usefull_date_start_Get()
+    //{
+    //    HttpClient httpClient = new HttpClient();
+    //    var url = "https://localhost/usefull_date/start";
+    //    var response = httpClient.GetAsync(url).Result;
+    //    if (response.IsSuccessStatusCode)
+    //    {
+    //        var result = response.Content.ReadAsStringAsync().Result;
+    //        return result;
+    //    }
+    //    else
+    //    {
+    //        throw new Exception($"Error: {response.StatusCode}");
+    //    }
+    //}
+
 }

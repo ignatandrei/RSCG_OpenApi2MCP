@@ -2,7 +2,9 @@
 using Microsoft.OpenApi.Readers;
 using System;
 using System.Threading.Tasks;
-
+/*
+ * dotnet "D:\MyPackages\.nuget\packages\microsoft.extensions.apidescription.server\9.0.3\build\../tools/dotnet-getdocument.dll" --assembly "D:\gth\RSCG_OpenApi2MCP\src\OA2MCP_TestMe\bin\Debug\net9.0\OA2MCP_TestMe.dll" --file-list "obj\OA2MCP_TestMe.OpenApiFiles.cache" --framework ".NETCoreApp,Version=v9.0" --output "D:\gth\RSCG_OpenApi2MCP\src\OA2MCP_TestMe\obj" --project "OA2MCP_TestMe" --assets-file "D:\gth\RSCG_OpenApi2MCP\src\OA2MCP_TestMe\obj\project.assets.json" --platform "AnyCPU"
+ */
 namespace RSCG_OpenApi2MCP;
 enum FileJsonEnum
 {
@@ -75,7 +77,7 @@ public class OpenAPI2MCP : IIncrementalGenerator
         if (!json.IsSuccess)
         {
             context.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor("RSCG00"+((int)json.Status), "Error", "Error: {0}", "RSCG", DiagnosticSeverity.Error, true),
+                new DiagnosticDescriptor("RSCG00"+((int)json.Status), "Error", "Error: {0}", "RSCG", DiagnosticSeverity.Warning, true),
                 Location.None,
                 json.Status.ToString() + "--"+ json.Path));
             return;
@@ -92,7 +94,7 @@ public class OpenAPI2MCP : IIncrementalGenerator
 
             return;
         }
-        FunctionsToGenerate functions = new(document);
+        FunctionsToGenerate functions = new(document,"localSwagger");
         context.AddSource("FunctionsToGenerate", functions.TemplateToDisplay());
 
     }

@@ -13,12 +13,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NetCoreUsefullEndpoints" Version="9.2025.405.1013" />
     <PackageReference Include="OpenAPISwaggerUI" Version="9.2024.1215.2209" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RSCG_OpenApi2MCP.ServiceDefaults\RSCG_OpenApi2MCP.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\RSCG_OpenApi2MCP\RSCG_OpenApi2MCP.csproj" OutputItemType="Analyzer"  />
+    <ProjectReference Include="..\RSCG_OpenApi2MCP\RSCG_OpenApi2MCP.csproj" OutputItemType="Analyzer" />
   </ItemGroup>
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>

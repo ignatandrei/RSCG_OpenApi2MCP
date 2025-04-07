@@ -4,7 +4,7 @@ namespace RSCG_OpenApi2MCP;
 internal class FunctionsToGenerate
 {
     internal List<FunctionToGenerate> functions = [];
-    public FunctionsToGenerate(OpenApiDocument document)
+   public FunctionsToGenerate(OpenApiDocument document,string name)
     {
         if (document.Paths?.Count > 0)
         {
@@ -19,8 +19,11 @@ internal class FunctionsToGenerate
             }
         }
 
+        Name = name;
     }
     public int Count=>functions.Count;
+
+    public string Name { get; }
 
     public string TemplateToDisplay()
     {

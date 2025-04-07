@@ -26,9 +26,10 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.OpenApi" Version="1.6.24" />
-		<PackageReference Include="Microsoft.OpenApi.Readers" Version="1.6.24" />
+		<PackageReference Include="Microsoft.OpenApi" Version="1.6.24" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="Microsoft.OpenApi.Readers" Version="1.6.24" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="RSCG_TimeBombComment" Version="2023.12.19.1802" />
+		<PackageReference Include="SharpYaml" Version="2.1.1" PrivateAssets="all" GeneratePathProperty="true"  />
 		<PackageReference Include="System.CodeDom" PrivateAssets="all" GeneratePathProperty="true" Version="8.0.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
 		<PackageReference Include="System.Text.Json" Version="9.0.3" PrivateAssets="all" GeneratePathProperty="true" />
@@ -39,6 +40,9 @@
 		<ItemGroup>
 			<TargetPathWithTargetPlatformMoniker Include="$(TargetPath)" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\*.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_OpenApi)\lib\netstandard2.0\*.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_OpenApi_Readers)\lib\netstandard2.0\*.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgSharpYaml)\lib\netstandard2.0\*.dll" IncludeRuntimeDependency="false" />
 		</ItemGroup>
 	</Target>
 
@@ -46,6 +50,9 @@
 	<ItemGroup>
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<None Include="$(OutputPath)\System.Text.Json.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="$(OutputPath)\Microsoft.OpenApi.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="$(OutputPath)\Microsoft.OpenApi.Readers.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="$(OutputPath)\SharpYaml.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<None Include="$(OutputPath)\System.Text.Encodings.Web.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<None Include="$(OutputPath)\System.Memory.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<None Include="$(OutputPath)\System.Runtime.CompilerServices.Unsafe.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
@@ -61,15 +68,22 @@
 		<ItemGroup>
 			<TextJsonDlls Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" />
 			<TextJsonDependencies Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\*.dll" Exclude="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" />
+			<OpenAPIDlls Include="$(PkgMicrosoft_OpenApi)\lib\netstandard2.0\Microsoft.OpenApi.dll" />
 		</ItemGroup>
+		<Message Text="try to copy System.Text.Json from: $(PkgSystem_Text_Json)\lib\netstandard2.0 to $(OutputPath)" Importance="high" />
+		<Message Text="try to copy OpenAPI from: $(PkgMicrosoft_OpenApi)\lib\netstandard2.0 to $(OutputPath)" Importance="high" />
 		<Copy SourceFiles="@(TextJsonDlls)" DestinationFolder="$(OutputPath)" />
 		<Copy SourceFiles="@(TextJsonDependencies)" DestinationFolder="$(OutputPath)" />
+		<Copy SourceFiles="@(OpenAPIDlls)" DestinationFolder="$(OutputPath)" />
 		<Message Text="Copied System.Text.Json from: $(PkgSystem_Text_Json)\lib\netstandard2.0 to $(OutputPath)" Importance="high" />
+		<Message Text="Copied OpenAPI from: $(PkgMicrosoft_OpenApi)\lib\netstandard2.0 to $(OutputPath)" Importance="high" />
 	</Target>
-
+	
 	<Target Name="ShowNugetPaths" AfterTargets="CopySystemTextJson">
 		<Message Text="System.Text.Json package path: $(PkgSystem_Text_Json)" Importance="high" />
-		<Message Text="Output Path: $(OutputPath)" Importance="high" />
+		<Message Text="OpenAPI package path: $(PkgMicrosoft_OpenApi)" Importance="high" />
+		<Message Text="OpenAPI Readers package path: $(PkgMicrosoft_OpenApi_Readers)" Importance="high" />
+		<Message Text="SharpYAML package path: $(PkgSharpYAML)" Importance="high" />
 	</Target>
 
 	<ItemGroup>

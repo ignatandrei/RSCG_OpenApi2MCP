@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "dotnet-depends": {
+      "version": "0.8.0",
+      "commands": [
+        "dotnet-depends"
+      ],
+      "rollForward": false
+    },
+    "dotnet-ef": {
+      "version": "9.0.3",
+      "commands": [
+        "dotnet-ef"
+      ],
+      "rollForward": false
+    },
+    "dotnet-outdated-tool": {
+      "version": "4.6.8",
+      "commands": [
+        "dotnet-outdated"
+      ],
+      "rollForward": false
+    },
+    "dotnet-project-licenses": {
+      "version": "2.7.1",
+      "commands": [
+        "dotnet-project-licenses"
+      ],
+      "rollForward": false
+    },
+    "dotnet-property": {
+      "version": "3.0.0",
+      "commands": [
+        "dotnet-property"
+      ],
+      "rollForward": false
+    },
+    "dotnet-repl": {
+      "version": "0.3.239",
+      "commands": [
+        "dotnet-repl"
+      ],
+      "rollForward": false
+    },
+    "dotnetthx": {
+      "version": "0.2.0",
+      "commands": [
+        "dotnet-thx"
+      ],
+      "rollForward": false
+    },
+    "microsoft.dotnet-httprepl": {
+      "version": "8.0.0",
+      "commands": [
+        "httprepl"
+      ],
+      "rollForward": false
+    },
+    "netpackageanalyzerconsole": {
+      "version": "9.2024.1226.1822",
+      "commands": [
+        "PackageAnalyzer"
+      ],
+      "rollForward": false
+    },
+    "powershell": {
+      "version": "7.5.0",
+      "commands": [
+        "pwsh"
+      ],
+      "rollForward": false
+    },
+    "run-script": {
+      "version": "0.6.0",
+      "commands": [
+        "r"
+      ],
+      "rollForward": false
+    },
+    "watch2": {
+      "version": "8.2024.1104.2136",
+      "commands": [
+        "watch2"
+      ],
+      "rollForward": false
+    }
+  }
+}
