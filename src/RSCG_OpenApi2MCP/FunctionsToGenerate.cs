@@ -5,7 +5,7 @@ internal class FunctionsToGenerate
 {
     internal List<FunctionToGenerate> functions = [];
    public FunctionsToGenerate(OpenApiDocument document,string name)
-    {
+   {
         if (document.Paths?.Count > 0)
         {
             foreach (var path in document.Paths)

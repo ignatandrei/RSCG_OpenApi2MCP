@@ -1,4 +1,5 @@
 //using Microsoft.AspNetCore.Authentication.Negotiate;
+using OA2MCP_TestMe;
 using OpenAPISwaggerUI;
 using UsefullExtensions;
 
@@ -24,6 +25,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddMcpServer().WithToolsFromAssembly();
 
+builder.Services.AddHostedService<myServerAddress>();
+
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
@@ -34,6 +37,7 @@ app.MapUsefullAll();
     app.MapOpenApi();
     app.UseOpenAPISwaggerUI();
     app.MapMcpSse();
+    
 }
 app.MapGet("/TestAndrei", (int id) => $"Hello World {id}!");
 //app.UseHttpsRedirection();

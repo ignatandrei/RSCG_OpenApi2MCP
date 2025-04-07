@@ -12,7 +12,15 @@ internal class FunctionToGenerate
         this.key = key;
         this.op = op;
     }
+    public string UrlWithParameters
+    {
+        get { 
+            if(op.Value.Parameters.Count == 0)    
+                return key;
 
+            return "//TODO: add parameters interpolation";        
+        }
+    }
     public string Description
     {
         get
@@ -23,6 +31,10 @@ internal class FunctionToGenerate
     public string FullDisplayName
     {
         get { return op.Key + "--"+ key + "-- Nr Parameters:"  + (op.Value.Parameters?.Count??0); }
+    }
+    public OperationType operationType
+    {
+        get { return op.Key; }
     }
     public string FuncName
     {
