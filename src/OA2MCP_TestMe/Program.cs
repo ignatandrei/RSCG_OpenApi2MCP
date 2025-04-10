@@ -30,7 +30,7 @@ builder.Services.AddHostedService<myServerAddress>();
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
-app.MapUsefullAll();
+//app.MapUsefullAll();
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 {
@@ -39,8 +39,13 @@ app.MapUsefullAll();
     app.MapMcpSse();
     
 }
-app.MapGet("/TestAndrei", (int id) => $"Hello World {id}!");
+app.MapGet("/EchoWorld", (string id) => $"Hello World {id}!")
+    .WithSummary("summary Echo the id")
+    .WithDescription("description Echo the id")
+    ;
+
 //app.UseHttpsRedirection();
+
 
 //app.UseAuthorization();
 
