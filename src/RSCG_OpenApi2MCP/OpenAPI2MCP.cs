@@ -82,7 +82,7 @@ public class OpenAPI2MCP : IIncrementalGenerator
         if (!json.IsSuccess)
         {
             context.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor("RSCG00"+((int)json.Status), "Error", "Error: {0}", "RSCG", DiagnosticSeverity.Warning, true),
+                new DiagnosticDescriptor("RSCG00"+((int)json.Status), "Problem", "Problem: {0}", "RSCG", DiagnosticSeverity.Warning, true),
                 Location.None,
                 json.Status.ToString() + "--"+ json.Path));
             return;
