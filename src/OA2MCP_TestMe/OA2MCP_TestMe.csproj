@@ -15,6 +15,7 @@
     </PackageReference>
     <PackageReference Include="NetCoreUsefullEndpoints" Version="9.2025.405.1013" />
     <PackageReference Include="OpenAPISwaggerUI" Version="9.2024.1215.2209" />
+    <!-- <PackageReference Include="RSCG_OpenApi2MCP" Version="9.2025.410.706" OutputItemType="Analyzer"  /> -->
   </ItemGroup>
 
   <ItemGroup>

@@ -33,6 +33,7 @@ jobs:
         dotnet restore
         # dotnet r test
         dotnet r build
+        dotnet r build
     - name: Pack
       run: |
         cd src 
