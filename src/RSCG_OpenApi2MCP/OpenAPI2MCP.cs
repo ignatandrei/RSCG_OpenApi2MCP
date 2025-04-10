@@ -93,7 +93,7 @@ public class OpenAPI2MCP : IIncrementalGenerator
         if (diagnostic.Errors.Count > 0)        
         {
             context.ReportDiagnostic(Diagnostic.Create(
-                new DiagnosticDescriptor("RSCG00" + ((int)FileJsonEnum.JSONWithErrors), "Error", "Error: {0}", "RSCG", DiagnosticSeverity.Error, true),
+                new DiagnosticDescriptor("RSCG00" + ((int)FileJsonEnum.JSONWithErrors), "Problem", "Problem: {0}", "RSCG", DiagnosticSeverity.Warning, true),
                 Location.None,
                 FileJsonEnum.JSONWithErrors.ToString() + "--" + diagnostic.Errors[0].Message));
 
