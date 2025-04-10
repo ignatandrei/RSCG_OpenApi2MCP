@@ -47,8 +47,8 @@ internal class FunctionToGenerate
         }
     }
     int nrParameters()
-    {
-        return op.Value.Parameters?.Count??0;
+    {        
+        return (op.Value.Parameters?.Count??0)+ BodyJson.Length>0?1:0;
     }
     bool HasParameters()
     {
@@ -56,8 +56,19 @@ internal class FunctionToGenerate
     }
     public string FullDisplayName 
     {
-        get { return op.Key + "--"+ key + "-- Nr Parameters:"  + nrParameters(); }
+        get { return op.Key + "--"+ key + "-- Nr Parameters:"  + nrParameters() + "--"+BodyJson; }
     }
+    public string BodyJson
+    {
+        get
+        {
+            if (op.Value.RequestBody == null) return "";
+            var schema = op.Value.RequestBody.Content["application/json"].Schema;
+            if (schema == null) return "";
+            return CSharpTypeFromSchema(schema);
+        }
+    }
+    
     public OperationType operationType
     {
         get { return op.Key; }
@@ -83,8 +94,6 @@ internal class FunctionToGenerate
                 if (schema.Items != null)
                     return CSharpTypeFromSchema(schema.Items) + "[]";
                 return "string[]";                
-            case "object":
-                return "object";
             default:
                 if (schema.Reference != null)
                 {
@@ -103,7 +112,12 @@ internal class FunctionToGenerate
     public string ParamFunction() 
     {
         if (!HasParameters()) return "";
-        var str = op.Value.Parameters.Select(it => CSharpTypeFromSchema(it.Schema) + " " + it.Name);
+        var str = op.Value.Parameters.Select(it => CSharpTypeFromSchema(it.Schema) + " " + it.Name).ToArray();
+        if(BodyJson.Length > 0)
+        {
+            str = str.Append(BodyJson +" body").ToArray();
+        }
+
         return string.Join(",", str);
     }
 

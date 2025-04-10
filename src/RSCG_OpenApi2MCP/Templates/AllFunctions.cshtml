@@ -62,6 +62,20 @@ public static class MCPTools_@(Model.Name){
                         
                         </text>
                         break;
+                    case Microsoft.OpenApi.Models.OperationType.Post:
+                        <text>
+                            var response = await client.PostAsJsonAsync(url, body);
+                            if (response.IsSuccessStatusCode)
+                            {
+                                return await response.Content.ReadAsStringAsync();
+                            }
+                            else
+                            {
+                                throw new System.Exception($"Error: {response.StatusCode}");
+                            }
+
+                        </text>
+                        break;
                     default:
                         <text>
                             //todo: handle @(fct.operationType)

@@ -44,9 +44,19 @@ app.MapGet("/EchoWorld", (string id) => $"Hello World {id}!")
     .WithDescription("description Echo the id")
     ;
 
+app.MapPost("/SaveData", async (WeatherForecast weatherForecast) =>
+{
+    //simulate save to database
+    await Task.Delay(1000);
+    return Random.Shared.Next(0, 100);
+})
+    .WithSummary("save weather forecast")
+    .WithDescription("save weather forecast")
+    ;
 //app.UseHttpsRedirection();
 
-
+HttpClient client = new HttpClient();
+//client.PostAsJsonAsync()
 //app.UseAuthorization();
 
 app.MapControllers();
