@@ -74,6 +74,11 @@ public class OpenAPI2MCP : IIncrementalGenerator
 
     private void RegisterData(SourceProductionContext context, FileJson json)
     {
+        string name = "localSwagger";
+        var template = new RSCG_OpenApi2MCP.Templates.RegisterCallData(name);
+        var result = template.Render();
+        context.AddSource("RegisterCallData", result);
+
         if (!json.IsSuccess)
         {
             context.ReportDiagnostic(Diagnostic.Create(
@@ -94,7 +99,7 @@ public class OpenAPI2MCP : IIncrementalGenerator
 
             return;
         }
-        FunctionsToGenerate functions = new(document,"localSwagger");
+        FunctionsToGenerate functions = new(document,name);
         context.AddSource("FunctionsToGenerate", functions.TemplateToDisplay());
 
     }

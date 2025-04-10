@@ -1,0 +1,33 @@
+@inherits RazorBlade.HtmlTemplate<string>;
+
+namespace OpenApi2MCP;
+public static partial  class MCPTools_@(Model){
+
+    static System.String[] adresses=[];
+    public static void SetAdresses(params System.String[] adress){
+        adresses=  adress;
+        foreach(var item in adresses){
+            System.Net.Http.HttpClient client= new();
+            client.BaseAddress= new System.Uri(item);
+            httpClients.Add(item,client);
+        }
+    }
+    static Dictionary<string,System.Net.Http.HttpClient > httpClients=[];
+    private static System.Net.Http.HttpClient preferred(){
+        if(httpClients.Count==0){
+          throw new System.Exception("No address set");
+        }
+        if(httpClients.Count==1){
+            return httpClients.First().Value;
+        }
+        var secure = httpClients.Where(x => x.Value.BaseAddress.Scheme == "https").ToArray();
+    
+        if(secure.Length>0)
+            return secure[0].Value;
+
+    return httpClients.First().Value;
+
+    }
+
+
+}

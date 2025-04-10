@@ -16,7 +16,6 @@
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GX</CompilerGeneratedFilesOutputPath>
 	</PropertyGroup>
-
 	<ItemGroup>
 		<PackageReference Include="RazorBlade" Version="0.4.3" PrivateAssets="all" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
 	</ItemGroup>
@@ -29,7 +28,7 @@
 		<PackageReference Include="Microsoft.OpenApi" Version="1.6.24" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="Microsoft.OpenApi.Readers" Version="1.6.24" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="RSCG_TimeBombComment" Version="2023.12.19.1802" />
-		<PackageReference Include="SharpYaml" Version="2.1.1" PrivateAssets="all" GeneratePathProperty="true"  />
+		<PackageReference Include="SharpYaml" Version="2.1.1" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.CodeDom" PrivateAssets="all" GeneratePathProperty="true" Version="8.0.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
 		<PackageReference Include="System.Text.Json" Version="9.0.3" PrivateAssets="all" GeneratePathProperty="true" />
@@ -131,10 +130,6 @@
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Templates\" />
 	</ItemGroup>
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
