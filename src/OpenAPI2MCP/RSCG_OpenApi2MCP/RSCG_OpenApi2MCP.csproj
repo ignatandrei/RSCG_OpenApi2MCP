@@ -59,7 +59,7 @@
 
 	<PropertyGroup>
 		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-		<WarningsNotAsErrors>CS0436,NU1903</WarningsNotAsErrors>
+		<WarningsNotAsErrors>CS0436,NU1903,CS0618</WarningsNotAsErrors>
 	</PropertyGroup>
 
 	<!-- Copy the System.Text.Json DLL from NuGet package -->
