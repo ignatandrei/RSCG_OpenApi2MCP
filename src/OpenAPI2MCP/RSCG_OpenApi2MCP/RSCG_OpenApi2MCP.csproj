@@ -87,15 +87,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-		<None Include="../../README.md" Pack="true" PackagePath="\" />
-		<None Include="../../readme.txt">
+		<None Include="../README.md" Pack="true" PackagePath="\" />
+		<None Include="../readme.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
-		<None Include="../../LICENSE" Pack="true" PackagePath="\" />
+		<None Include="../../../LICENSE" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	<PropertyGroup>
-		<Description>Generating MCP tools from swagger at runtime.</Description>
+		<Description>Generating MCP tools from swagger at buildtime.</Description>
 		<Copyright>MIT</Copyright>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<CurrentDate>$([System.DateTime]::Now.ToString(yyyyMMdd))</CurrentDate>
