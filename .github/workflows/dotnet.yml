@@ -29,6 +29,7 @@ jobs:
     - name: Restore dependencies
       run: | 
         cd src
+        cd OpenAPI2MCP
         dotnet tool restore
         dotnet restore
         # dotnet r test
@@ -37,18 +38,20 @@ jobs:
     - name: Pack
       run: |
         cd src 
+        cd OpenAPI2MCP
         dotnet r pack 
 
     - name: 'Upload nuget as artifact'
       uses: actions/upload-artifact@v4
       with:
         name: Nuget_${{github.run_number}}
-        path: nugetPackages
+        path: src/nugetPackages
         retention-days: 1
 
     - name: push to nuget
       if: startsWith(github.ref, 'refs/tags/v') # This line ensures the step runs only if a tag version is present
       run: |
+        cd src
         dir nugetPackages/*.*
         echo '1'
         dir nugetPackages/*.symbols.nupkg  
