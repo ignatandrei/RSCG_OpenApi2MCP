@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
+    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="0.4.1-preview.1" />
+    <PackageReference Include="NetCoreUsefullEndpoints" Version="9.2025.405.1013" />
+    <PackageReference Include="OpenAPISwaggerUI" Version="9.2024.1215.2209" />
+    <!-- <PackageReference Include="RSCG_OpenApi2MCP" Version="9.2025.410.706" OutputItemType="Analyzer"  /> -->
+  </ItemGroup>
+
+  <PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GX</CompilerGeneratedFilesOutputPath>
+	</PropertyGroup>
+	<!-- from here -->
+	<ItemGroup>
+	  <ProjectReference Include="..\RSCG_MCP2File\RSCG_MCP2File.csproj" OutputItemType="Analyzer" />
+	</ItemGroup>
+
+</Project>
