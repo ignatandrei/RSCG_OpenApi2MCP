@@ -113,7 +113,7 @@ public class MCP2File : IIncrementalGenerator
         var resultType = isAsync ? method.ReturnType is INamedTypeSymbol nts && nts.TypeArguments.Length == 1 ? nts.TypeArguments[0].ToDisplayString() : "object" : returnType;
         var awaitCall = isAsync ? "await " : "";
         var origCall = isAsync ? $"({resultType})await {methodName}({callParams})" : $"{methodName}({callParams})";
-        var getResult = isAsync ? $"dynamic result = await this.{methodName}({callParams});" : $"dynamic result = this.{methodName}({callParams});";
+        var getResult = isAsync ? $"dynamic result = await {methodName}({callParams});" : $"dynamic result = {methodName}({callParams});";
         sb.AppendLine($"        public async Task {methodName}ExportToFile({string.Join(", ", parameters)})");
         sb.AppendLine("        {");
         sb.AppendLine($"            {getResult}");
