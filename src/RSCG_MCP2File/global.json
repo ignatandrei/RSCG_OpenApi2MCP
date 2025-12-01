@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "dotnet build --configuration Release",
+    "test": "dotnet test --configuration Release",
+    "ci": "dotnet r build",    
+    "pack":"dotnet r ci  && dotnet pack -o ../nugetPackages"
+
+  }
+}
