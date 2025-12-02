@@ -17,6 +17,10 @@
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GX</CompilerGeneratedFilesOutputPath>
 	</PropertyGroup>
 	<ItemGroup>
+		<!-- Package the generator in the analyzer directory of the nuget package -->
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+	</ItemGroup>
+	<ItemGroup>
 
 		
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
@@ -52,7 +56,7 @@
 		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 		<WarningsNotAsErrors>CS0436,NU1903,CS0618</WarningsNotAsErrors>
 		<NoWarn>NU5125;NU5039;CS0436;NU5128</NoWarn>
-		<Version>9.2025.1202.800</Version>
+		<Version>9.2025.1202.817</Version>
 		<RepositoryUrl>https://github.com/ignatandrei/RSCG_OpenApi2MCP</RepositoryUrl>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<RepositoryType>git</RepositoryType>

@@ -20,6 +20,7 @@ public class MCP2File : IIncrementalGenerator
                 namespace MCP2File
                 {
                     [global::Microsoft.CodeAnalysis.EmbeddedAttribute]
+                    [global::System.AttributeUsage(global::System.AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
                     internal class AddMCPExportToFile: global::System.Attribute {} 
                 }");
            });
