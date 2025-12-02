@@ -55,7 +55,7 @@ public class MCP2File : IIncrementalGenerator
                 var res = GenerateFromClass(cls);
             if (res != null)
             {
-                ctx.AddSource($"{cls.Name}ExportToFile.g.cs", res);
+                ctx.AddSource($"{cls.Name}_ExportToFile.g.cs", res);
 
             }
         }
@@ -115,6 +115,8 @@ public class MCP2File : IIncrementalGenerator
         var awaitCall = isAsync ? "await " : "";
         var origCall = isAsync ? $"({resultType})await {methodName}({callParams})" : $"{methodName}({callParams})";
         var getResult = isAsync ? $"dynamic result = await {methodName}({callParams});" : $"dynamic result = {methodName}({callParams});";
+        sb.AppendLine("         [global::ModelContextProtocol.Server.McpServerTool]");
+        sb.AppendLine($"               [global::System.ComponentModel.Description(\"calls the {methodName} and saves the result to a file \")]");
         sb.AppendLine($"        public async Task {methodName}ExportToFile({string.Join(", ", parameters)})");
         sb.AppendLine("        {");
         sb.AppendLine($"            {getResult}");
