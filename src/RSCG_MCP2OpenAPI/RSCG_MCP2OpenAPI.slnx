@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="OA2MCP_TestMe/OA2MCP_TestMe.csproj" />
+  <Project Path="RSCG_MCP2OpenAPI/RSCG_MCP2OpenAPI.csproj" />
+</Solution>

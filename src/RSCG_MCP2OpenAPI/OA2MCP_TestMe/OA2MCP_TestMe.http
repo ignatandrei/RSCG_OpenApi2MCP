@@ -1,0 +1,6 @@
+@OA2MCP_TestMe_HostAddress = http://localhost:5246
+
+GET {{OA2MCP_TestMe_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
