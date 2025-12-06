@@ -10,6 +10,6 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@modelcontextprotocol/inspector": "^0.8.1"
+    "@modelcontextprotocol/inspector": "^0.16.6"
   }
 }
