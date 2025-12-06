@@ -1,9 +1,4 @@
 
-using Microsoft.AspNetCore.Mvc;
-using OA2MCP_TestMe;
-using OpenAPISwaggerUI;
-using UsefullExtensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -15,7 +10,7 @@ builder.Services.AddMcpServer()
     .WithStdioServerTransport()
     .WithHttpTransport()
     ;
-
+builder.Services.AddTransient<WeatherTool>();
 
 var app = builder.Build();
 
@@ -24,5 +19,5 @@ var app = builder.Build();
     app.MapMcp();
 app.MapGet("/", () => "todo");
 app.MapControllers();
-
+app.AddAll_WeatherTool();
 await app.RunAsync();

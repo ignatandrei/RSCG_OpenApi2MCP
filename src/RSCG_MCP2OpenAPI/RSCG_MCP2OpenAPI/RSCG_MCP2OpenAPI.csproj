@@ -44,12 +44,12 @@
 		<Watch Include="**\Templates\*.cshtml" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
 	</ItemGroup>
 	<PropertyGroup>
-		<Description>Generating MCP tool function that exports to file the result of another MCP tool.</Description>
+		<Description>Generating Swagger/OpenAPI function from MCP tool.</Description>
 		<Copyright>MIT</Copyright>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<CurrentDate>$([System.DateTime]::Now.ToString(yyyyMMdd))</CurrentDate>
 		<Authors>Andrei Ignat</Authors>
-		<Title>Generating MCP tool function that exports to file the result of another MCP tool</Title>
+		<Title>Generating Swagger function that mimics the  MCP tool</Title>
 		<PackageTags>dotnet;dotnetcore;csharp;generators;sourcegen;roslyn;mcp;</PackageTags>
 		<PackageProjectUrl>https://github.com/ignatandrei/RSCG_OpenApi2MCP</PackageProjectUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>

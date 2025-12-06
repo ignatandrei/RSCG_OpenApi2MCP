@@ -11,9 +11,9 @@
 
 
 ///Number methods : @Model.NrMethods
-partial class @(Model.ClassName)_OpenAPI
+internal static partial class @(Model.ClassName)_OpenAPI
 {
-    public void AddAll(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder builder){
+    public static void AddAll_@(Model.ClassName)(this Microsoft.AspNetCore.Routing.IEndpointRouteBuilder builder){
         @foreach (var meth in Model.infoFromMethodSymbols)
         {
             string MethodName = $"Add_{meth.MethodName}(builder);\r\n";

@@ -1,7 +1,5 @@
 ﻿namespace OA2MCP_TestMe;
 
-using ModelContextProtocol.Server;
-using System.ComponentModel;
 [McpServerToolType]
 [MCP2OpenAPI.AddMCP2OpenApi]
 public partial class WeatherTool
