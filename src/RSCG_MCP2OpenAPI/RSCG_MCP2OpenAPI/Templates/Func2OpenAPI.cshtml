@@ -1,0 +1,40 @@
+@inherits RazorBlade.PlainTextTemplate<InfoFromMethodSymbol>
+@{
+    string nameRecord = "rec_" + Model.MethodName;
+    bool IsStatic = Model.IsStatic;
+    string firstParam = IsStatic ? "":$"[Microsoft.AspNetCore.Mvc.FromServices]{Model.FullClassName} toolClass" ;
+    string allParams = "";
+    var argParams = Model.argParams;
+    if (firstParam.Length > 0 && Model.HasParams)
+    {
+        allParams = firstParam + "," + $"[Microsoft.AspNetCore.Mvc.FromBody]{nameRecord}  value"; ;
+    }
+    else if (firstParam.Length == 0 && Model.HasParams)
+    {
+        allParams = $"[Microsoft.AspNetCore.Mvc.FromBody]{nameRecord}  value";
+    }
+    else
+    {
+        allParams = firstParam + argParams;
+    }
+
+    string callData = IsStatic ? $"{Model.FullClassName}.":"toolClass.";
+    string argsToBeCalled = Model.HasParams ? $"({Model.callParamsRecord})" : "()";
+}
+
+@if(Model.HasParams){
+
+    <text>
+    public record @nameRecord ( @(argParams) );
+    </text>
+}
+
+public void Add_@(Model.MethodName) (Microsoft.AspNetCore.Routing.IEndpointRouteBuilder builder){
+    
+        builder.MapPost("/api/mcp/@Model.ClassName/@Model.MethodName",(@allParams)=>
+        @(callData+Model.MethodName + argsToBeCalled)
+        );
+
+}
+
+

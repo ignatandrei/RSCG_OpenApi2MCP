@@ -1,0 +1,33 @@
+@inherits RazorBlade.PlainTextTemplate<InfoFromClassSymbol>
+@{
+    string nameSpace = "";
+    if (Model.Namespace?.Length > 0)
+    {
+        nameSpace = $"namespace {Model.Namespace};";
+    }
+}
+
+@nameSpace
+
+
+///Number methods : @Model.NrMethods
+partial class @(Model.ClassName)_OpenAPI
+{
+    public void AddAll(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder builder){
+        @foreach (var meth in Model.infoFromMethodSymbols)
+        {
+            string MethodName = $"Add_{meth.MethodName}(builder);\r\n";
+            @MethodName 
+
+
+        }
+    }
+
+@foreach (var meth in Model.infoFromMethodSymbols)
+{
+    var template = new Func2OpenAPI(meth);
+    @template.Render()
+}
+
+}
+

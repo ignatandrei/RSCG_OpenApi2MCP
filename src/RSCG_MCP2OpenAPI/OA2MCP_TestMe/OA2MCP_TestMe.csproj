@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
+    <PackageReference Include="ModelContextProtocol.AspNetCore" Version="0.4.1-preview.1" />
+    <PackageReference Include="NetCoreUsefullEndpoints" Version="9.2025.405.1013" />
+    <PackageReference Include="OpenAPISwaggerUI" Version="9.2024.1215.2209" />
+    <!-- <PackageReference Include="RSCG_OpenApi2MCP" Version="9.2025.410.706" OutputItemType="Analyzer"  /> -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RSCG_MCP2OpenAPI\RSCG_MCP2OpenAPI.csproj" OutputItemType="Analyzer"  />
+  </ItemGroup>
+
+  <PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GX</CompilerGeneratedFilesOutputPath>
+	</PropertyGroup>
+	<!-- from here -->
+	<ItemGroup>
+		<Watch Include=".\..\\RSCG_MCP2OpenAPI\Templates\*.cshtml" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
+	</ItemGroup>
+</Project>
