@@ -1,5 +1,7 @@
 # RSCG_MCP2File
 
+[![NuGet](https://img.shields.io/nuget/v/RSCG_MCP2File.svg)](https://www.nuget.org/packages/RSCG_MCP2File)
+
 RSCG_MCP2File is a .NET Standard 2.0 source generator that generates MCP (Microsoft Code Platform) tools that generates exports to file from each MCP function defined 
 
 
