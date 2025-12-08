@@ -1,5 +1,7 @@
 # RSCG_MCP2OpenAPI
 
+[![NuGet](https://img.shields.io/nuget/v/RSCG_MCP2OpenAPI.svg)](https://www.nuget.org/packages/RSCG_MCP2OpenAPI)
+
 RSCG_MCP2OpenAPI is a .NET Standard 2.0 source generator that , from MCP tools , generates SWAGGER / OPEN API
 
 
