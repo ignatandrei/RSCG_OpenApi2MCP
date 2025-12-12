@@ -37,7 +37,7 @@ jobs:
       run: |
         cd src 
         cd RSCG_MCP2File
-        otnet tool restore
+        dotnet tool restore
         dotnet r pack 
 
     # - name: 'Upload nuget as artifact'

@@ -37,6 +37,7 @@ jobs:
       run: |
         cd src 
         cd RSCG_MCP2OpenAPI
+        dotnet tool restore
         dotnet r pack 
 
     # - name: 'Upload nuget as artifact'
