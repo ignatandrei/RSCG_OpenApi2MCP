@@ -1,0 +1,59 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: compile and deploy RSCG_MCP2OpenAPI with tag v*
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    tags: [ 'v*' ] # Listen for tag pushes that match version tags
+    paths:
+      - 'src/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'src/RSCG_MCP2OpenAPI/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Restore dependencies
+      run: | 
+        cd src
+        cd RSCG_MCP2OpenAPI
+        dotnet tool restore
+        dotnet restore
+        dotnet r build
+    - name: Pack
+      run: |
+        cd src 
+        cd RSCG_MCP2OpenAPI
+        dotnet pack 
+
+    # - name: 'Upload nuget as artifact'
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: Nuget_${{github.run_number}}
+    #     path: src/nugetPackages
+    #     retention-days: 1
+
+    - name: push to nuget
+      if: startsWith(github.ref, 'refs/tags/v') # This line ensures the step runs only if a tag version is present
+      run: |
+        cd src
+        dir nugetPackages/*.*
+        echo '1'
+        dir nugetPackages/*.symbols.nupkg  
+        echo '2'
+        cd nugetPackages
+        dotnet nuget push "*.symbols.nupkg" --source https://api.nuget.org/v3/index.json --api-key  ${{ secrets.NUGET_KEY  }} 
+    

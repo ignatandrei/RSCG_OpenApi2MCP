@@ -1,7 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: compile and deploy with tag v*
+name: compile and deploy RSCG_MCP2File with tag v*
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ on:
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'src/**'
+      - 'src/RSCG_MCP2File/**'
 
 jobs:
   build:
@@ -29,24 +29,22 @@ jobs:
     - name: Restore dependencies
       run: | 
         cd src
-        cd OpenAPI2MCP
+        cd RSCG_MCP2File
         dotnet tool restore
         dotnet restore
-        # dotnet r test
-        dotnet r build
         dotnet r build
     - name: Pack
       run: |
         cd src 
-        cd OpenAPI2MCP
-        dotnet r pack 
+        cd RSCG_MCP2File
+        dotnet pack 
 
-    - name: 'Upload nuget as artifact'
-      uses: actions/upload-artifact@v4
-      with:
-        name: Nuget_${{github.run_number}}
-        path: src/nugetPackages
-        retention-days: 1
+    # - name: 'Upload nuget as artifact'
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: Nuget_${{github.run_number}}
+    #     path: src/nugetPackages
+    #     retention-days: 1
 
     - name: push to nuget
       if: startsWith(github.ref, 'refs/tags/v') # This line ensures the step runs only if a tag version is present
