@@ -7,7 +7,7 @@ using System.ComponentModel;
 public partial class WeatherTool
 {
     [McpServerTool, Description("Returns the current weather for a specific city")]
-    public string MyGetWeatherForCity(string cityName)
+    public string MyGetWeatherForCity( string cityName)
     { 
         Console.WriteLine("==========================");
         Console.WriteLine($"Function Start WeatherTool: GetWeatherForCity called with cityName: {cityName}");

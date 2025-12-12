@@ -44,10 +44,11 @@ public partial class WeatherTool
 it generates 
 
 ```csharp
-[global::ModelContextProtocol.Server.McpServerTool]
-               [global::System.ComponentModel.Description("calls the MyGetWeatherForCity and saves the result to a file ")]
-        public async Task MyGetWeatherForCityExportToFile(string cityName, string exportToFile)
+  [global::ModelContextProtocol.Server.McpServerTool]
+        [global::System.ComponentModel.Description("calls the MyGetWeatherForCity and saves the result to a file . Investigate Success parameter from result and, if false, see the ErrorMessage ")]
+        public async Task<MCP2File.ResultWriteToFile> MyGetWeatherForCityExportToFile(string cityName, [global::System.ComponentModel.Description("please use full file path. Do NOT use relative path ")]string exportToFile)
         {
+        try{
             dynamic result = MyGetWeatherForCity(cityName);
             if (result is byte[] bytes)
             {
@@ -61,8 +62,27 @@ it generates
             {
                 await File.WriteAllTextAsync(exportToFile, result?.ToString() ?? string.Empty);
             }
+            return MCP2File.ResultWriteToFile.FromSuccess();
+        }
+        catch (Exception ex)
+        {
+             return MCP2File.ResultWriteToFile.FromError(ex.Message);
+            
+        }
         }
 ```
+
+The ResultWriteToFile class is defined as:
+```csharp
+public class ResultWriteToFile
+{
+    public bool  Success { get; set; }
+    public string? ErrorMessage { get; set; }
+    public static ResultWriteToFile FromSuccess() => new ResultWriteToFile { Success = true};
+    public static ResultWriteToFile FromError(string errorMessage) => new ResultWriteToFile { Success = false, ErrorMessage = errorMessage };
+}
+```
+The AI should investigate the Success parameter from the result and, if false, see the ErrorMessage.
 
 ## License
 This project is licensed under the MIT License. 
