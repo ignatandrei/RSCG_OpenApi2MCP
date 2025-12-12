@@ -47,7 +47,7 @@ jobs:
     #     retention-days: 1
 
     - name: push to nuget
-      if: startsWith(github.ref, 'refs/tags/v') # This line ensures the step runs only if a tag version is present
+      if: ${{ startsWith(github.ref, 'refs/tags/v') && (contains(join(github.event.commits.*.modified, ' '), 'src/RSCG_MCP2File') || contains(join(github.event.commits.*.added, ' '), 'src/RSCG_MCP2File') || contains(join(github.event.commits.*.removed, ' '), 'src/RSCG_MCP2File')) }}
       run: |
         cd src
         dir nugetPackages/*.*
@@ -55,5 +55,5 @@ jobs:
         dir nugetPackages/*.symbols.nupkg  
         echo '2'
         cd nugetPackages
-        dotnet nuget push "*.symbols.nupkg" --source https://api.nuget.org/v3/index.json --api-key  ${{ secrets.NUGET_KEY  }} 
+        dotnet nuget push "*.symbols.nupkg" --source https://api.nuget.org/v3/index.json --api-key  ${{ secrets.NUGET_KEY  }}
     
