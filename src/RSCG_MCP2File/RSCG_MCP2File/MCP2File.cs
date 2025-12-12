@@ -23,6 +23,18 @@ public class MCP2File : IIncrementalGenerator
                     [global::System.AttributeUsage(global::System.AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
                     internal class AddMCPExportToFile: global::System.Attribute {} 
                 }");
+               i.AddSource("ResultWriteToFile.g.cs", @"
+                namespace MCP2File
+                {
+                    [global::Microsoft.CodeAnalysis.EmbeddedAttribute]                    
+                    public class ResultWriteToFile
+                    {
+                        public bool  Success { get; set; }
+                        public string? ErrorMessage { get; set; }
+                        public static ResultWriteToFile FromSuccess() => new ResultWriteToFile { Success = true};
+                        public static ResultWriteToFile FromError(string errorMessage) => new ResultWriteToFile { Success = false, ErrorMessage = errorMessage };
+                    }
+                }");
            });
 
         var nr = 0;
@@ -107,7 +119,7 @@ public class MCP2File : IIncrementalGenerator
         var parameters = method.Parameters
             .Select(p => $"{p.Type.ToDisplayString()} {p.Name}")
             .ToList();
-        parameters.Add("string exportToFile");
+        parameters.Add("[global::System.ComponentModel.Description(\"please use full file path. Do NOT use relative path \")]string exportToFile");
         var paramNames = method.Parameters.Select(p => p.Name).ToList();
         var callParams = string.Join(", ", paramNames);
         var isAsync = method.ReturnType.ToDisplayString().StartsWith("System.Threading.Tasks.Task<");
@@ -116,9 +128,11 @@ public class MCP2File : IIncrementalGenerator
         var origCall = isAsync ? $"({resultType})await {methodName}({callParams})" : $"{methodName}({callParams})";
         var getResult = isAsync ? $"dynamic result = await {methodName}({callParams});" : $"dynamic result = {methodName}({callParams});";
         sb.AppendLine("         [global::ModelContextProtocol.Server.McpServerTool]");
-        sb.AppendLine($"               [global::System.ComponentModel.Description(\"calls the {methodName} and saves the result to a file \")]");
-        sb.AppendLine($"        public async Task {methodName}ExportToFile({string.Join(", ", parameters)})");
+        sb.AppendLine($"        [global::System.ComponentModel.Description(\"calls the {methodName} and saves the result to a file . Investigate Success parameter from result and, if false, see the ErrorMessage \")]");
+        sb.AppendLine($"        public async Task<MCP2File.ResultWriteToFile> {methodName}ExportToFile({string.Join(", ", parameters)})");
         sb.AppendLine("        {");
+        
+        sb.AppendLine("        try{");
         sb.AppendLine($"            {getResult}");
         sb.AppendLine("            if (result is byte[] bytes)");
         sb.AppendLine("            {");
@@ -132,6 +146,13 @@ public class MCP2File : IIncrementalGenerator
         sb.AppendLine("            {");
         sb.AppendLine("                await File.WriteAllTextAsync(exportToFile, result?.ToString() ?? string.Empty);");
         sb.AppendLine("            }");
+        sb.AppendLine("            return MCP2File.ResultWriteToFile.FromSuccess();");
+        sb.AppendLine("        }");
+        sb.AppendLine("        catch (Exception ex)");
+        sb.AppendLine("        {");
+        sb.AppendLine("             return MCP2File.ResultWriteToFile.FromError(ex.Message);");
+        sb.AppendLine("            ");
+        sb.AppendLine("        }");
         sb.AppendLine("        }");
         sb.AppendLine();
     }
