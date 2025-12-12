@@ -6,8 +6,9 @@ RSCG_MCP2File is a .NET Standard 2.0 source generator that generates MCP (Micros
 
 
 ## Features
-- Generates tool from another 
-- 
+- Generates an MCP tool that writes the result of another tool to file 
+
+
 ## Usage
 Add RSCG_MCP2File as a NuGet package to your project. 
 

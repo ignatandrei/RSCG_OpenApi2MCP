@@ -47,7 +47,7 @@ jobs:
     #     retention-days: 1
 
     - name: push to nuget
-      if: ${{ startsWith(github.ref, 'refs/tags/v') && (contains(join(github.event.commits.*.modified, ' '), 'src/RSCG_MCP2File') || contains(join(github.event.commits.*.added, ' '), 'src/RSCG_MCP2File') || contains(join(github.event.commits.*.removed, ' '), 'src/RSCG_MCP2File')) }}
+      if: ${{ startsWith(github.ref, 'refs/tags/v') }} # This line ensures the step runs only if a tag version is present
       run: |
         cd src
         dir nugetPackages/*.*
